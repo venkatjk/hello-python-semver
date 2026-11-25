@@ -5,7 +5,7 @@ import sys
 
 def greet(name: str = "World") -> str:
     """Return a greeting for the given name."""
-    return f"Hello, {name}!"
+    return f"Hello Mr, {name}!"
 
 
 def main(argv: list[str] | None = None) -> int:
