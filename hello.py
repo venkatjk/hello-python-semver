@@ -4,8 +4,8 @@ import sys
 
 
 def greet(name: str = "World") -> str:
-    """Return a greeting for the given name."""
-    return f"HelloMr, {name}!"
+    """Return a greeting for the givens name."""
+    return f"Hello, {name}!"
 
 
 def main(argv: list[str] | None = None) -> int:
