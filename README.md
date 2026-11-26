@@ -50,6 +50,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 | `scripts/release.sh` | Calculates the version, checks the changelog, creates and pushes the tag |
 | `.github/workflows/ci-release.yml` | The GitHub Actions workflow |
 
+
 ## Repository settings to check
 
 - **Branch protection on `main`**: require the `Check version and changelog` status check before merging.
