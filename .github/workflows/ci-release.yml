@@ -7,41 +7,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 # Releases run one at a time, so two merges cannot calculate the same version.
 concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  # On pull requests: fail early if the CHANGELOG entry does not match the version that would be tagged.
-  version-check:
-    name: Check version and changelog
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          fetch-tags: true
-
-      - name: Dry-run release check
-        run: bash scripts/release.sh --dry-run
-
-  # On main: create and push the semantic version tag.
+  # Version check on pull requests, and tagging on main, are run by the central release workflow.
   release:
-    name: Create semantic version tag
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    uses: venkatjk/central-release/.github/workflows/release.yml@main
     permissions:
       contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          fetch-tags: true
-
-      - name: Create and push tag
-        run: bash scripts/release.sh
