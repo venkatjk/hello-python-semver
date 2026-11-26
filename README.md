@@ -57,5 +57,3 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 - **Tag protection**: if you add a tag ruleset, allow `github-actions[bot]` to create `v*` tags, or the release job cannot push.
 - The workflow sets `contents: write` for the release job only, so the repository's default token permissions do not need changing.
 
-breaking 2
-minor patch
