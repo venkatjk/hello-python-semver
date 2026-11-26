@@ -9,3 +9,6 @@ Each release needs an entry headed `## [X.Y.Z] - YYYY-MM-DD` with at least one b
 The pipeline tags `vX.Y.Z` only when this entry matches the version it calculates.
 
 
+## [1.0.0] - 2026-11-26
+### Added
+- Initial stable release of the hello-world application and the semantic versioning pipeline.
