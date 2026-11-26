@@ -59,3 +59,4 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 
 breaking 2
 minor
+patch release
