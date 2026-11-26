@@ -33,9 +33,10 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 ## Releasing a change
 
 1. Make your change on a branch and add the commit messages you want (`feat:`, `fix:`, or `feat!:`).
-2. Add a changelog entry with the version the pipeline will calculate. Run the script locally to see it:
+2. Add a changelog entry with the version the pipeline will calculate. Run the central script locally to see it:
    ```bash
-   bash scripts/release.sh --dry-run
+   git clone https://github.com/venkatjk/central-release ../central-release
+   bash ../central-release/scripts/release.sh --dry-run
    ```
    The error message names the expected heading, for example `## [0.1.1] - 2026-11-30`.
 3. Open a pull request. The `Check version and changelog` job must pass.
@@ -47,8 +48,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 |---|---|
 | `hello.py` | The application |
 | `CHANGELOG.md` | Release notes, one dated section per version |
-| `scripts/release.sh` | Calculates the version, checks the changelog, creates and pushes the tag |
-| `.github/workflows/ci-release.yml` | The GitHub Actions workflow |
+| `.github/workflows/ci-release.yml` | Calls the central release workflow in `venkatjk/central-release`, which calculates the version, checks the changelog and creates the tag |
 
 
 ## Repository settings to check
