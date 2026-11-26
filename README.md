@@ -60,3 +60,4 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) messages, for e
 normal commit
 with ticket number patch commit
 minor release
+with ticket number minor commit
