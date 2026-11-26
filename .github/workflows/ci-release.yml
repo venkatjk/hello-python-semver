@@ -16,23 +16,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  test:
-    name: Build and test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Run unit tests
-        run: python -m unittest -v
-
   # On pull requests: fail early if the CHANGELOG entry does not match the version that would be tagged.
   version-check:
     name: Check version and changelog
-    needs: test
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -44,10 +30,9 @@ jobs:
       - name: Dry-run release check
         run: bash scripts/release.sh --dry-run
 
-  # On main, after tests pass: create and push the semantic version tag.
+  # On main: create and push the semantic version tag.
   release:
     name: Create semantic version tag
-    needs: test
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:

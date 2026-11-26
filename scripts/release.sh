@@ -7,7 +7,8 @@
 #   bash scripts/release.sh --dry-run  validate only, create nothing (run on pull requests)
 #
 # Version rules, applied to the commits since the highest vX.Y.Z tag
-# (or since the start of history, from 0.0.0, when no tag exists yet):
+# (or since the start of history, when no tag exists yet, in which case the first
+# release is always 1.0.0):
 #   BREAKING CHANGE: footer or type!: prefix  -> major
 #   feat: prefix                              -> minor
 #   anything else                             -> patch
@@ -51,13 +52,19 @@ else
   BUMP="patch"
 fi
 
-IFS=. read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
-case "$BUMP" in
-  major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
-  minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
-  patch) PATCH=$((PATCH + 1)) ;;
-esac
-NEXT_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+if [[ -z "$LAST_VERSION" ]]; then
+  # First release of a new repo always starts at 1.0.0, whatever the commit types.
+  NEXT_VERSION="1.0.0"
+  BUMP="initial"
+else
+  IFS=. read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
+  case "$BUMP" in
+    major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+    minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+    patch) PATCH=$((PATCH + 1)) ;;
+  esac
+  NEXT_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+fi
 TAG="v${NEXT_VERSION}"
 echo "Bump type: ${BUMP} -> next version: ${NEXT_VERSION}"
 
