@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Each release needs an entry headed `## [X.Y.Z] - YYYY-MM-DD` with at least one bullet.
 The pipeline tags `vX.Y.Z` only when this entry matches the version it calculates.
+## [2.1.1] - 2026-11-26
+### Changed
+- patch update
 ## [2.1.0] - 2026-11-26
 ### Changed
 - minor update
