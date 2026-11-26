@@ -10,16 +10,13 @@ The pipeline tags `vX.Y.Z` only when this entry matches the version it calculate
 
 ## [2.0.0] - 2026-11-26
 ### Changed
-- <what changed and how it breaks the old behaviour>
-### Removed
-- <anything removed, with the replacement>
+- Marked as a breaking change in pull request #2. No code change in `hello.py`.
 
 ## [1.0.1] - 2026-11-26
 ### Updated
 - Updated.
+- Minor version changes.
 
 ## [1.0.0] - 2026-11-26
 ### Added
 - Initial stable release of the hello-world application and the semantic versioning pipeline.
-
-
